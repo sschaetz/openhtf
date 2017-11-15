@@ -96,7 +96,6 @@ class PhaseExecutionOutcome(collections.namedtuple(
         not isinstance(phase_result, (openhtf.PhaseResult, ExceptionInfo)) and
         not isinstance(phase_result, threads.ThreadTerminationError)):
       raise InvalidPhaseResultError('Invalid phase result', phase_result)
-    super(PhaseExecutionOutcome, self).__init__(phase_result)
 
   @property
   def is_fail_and_continue(self):
@@ -260,7 +259,7 @@ class PhaseExecutor(object):
 
     if phase_thread.is_alive():
       phase_thread.kill()
-    
+
       _LOG.debug('Waiting for cancelled phase to exit: %s', phase_thread)
       timeout = timeouts.PolledTimeout.from_seconds(timeout_s)
       while phase_thread.is_alive() and not timeout.has_expired():

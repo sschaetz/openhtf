@@ -46,7 +46,11 @@ class Attachment(collections.namedtuple('Attachment', 'data mimetype')):
 
   @property
   def sha1(self):
-    return hashlib.sha1(self.data).hexdigest()
+    prepare_for_sha1 = self.data
+    if isinstance(self.data, str):
+        prepare_for_sha1 = self.data.encode()
+
+    return hashlib.sha1(prepare_for_sha1).hexdigest()
 
   def _asdict(self):
     # Don't include the attachment data when converting to dict.

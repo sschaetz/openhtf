@@ -41,6 +41,8 @@ class Atomic(object):
     self.temp = tempfile.NamedTemporaryFile(delete=False)
 
   def write(self, write_data):
+    if isinstance(write_data, str):
+      write_data = write_data.encode()
     return self.temp.write(write_data)
 
   def close(self):

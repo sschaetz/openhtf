@@ -41,5 +41,7 @@ class OutputToJSON(callbacks.OutputToFile):
       for phase, original_phase in zip(as_dict['phases'], test_record.phases):
         for name, attachment in phase['attachments'].items():
           original_data = original_phase.attachments[name].data
-          attachment['data'] = base64.standard_b64encode(original_data)
+          if isinstance(original_data, bytes):
+            original_data = original_data.decode("utf-8")
+          attachment['data'] = original_data
     return as_dict
