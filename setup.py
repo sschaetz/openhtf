@@ -77,12 +77,12 @@ class BuildProtoCommand(Command):
 
   def run(self):
     if self.skip_proto:
-      print 'Skipping building protocol buffers.'
+      print('Skipping building protocol buffers.')
       return
     # Build regular proto files.
     protos = glob.glob(os.path.join(self.indir, '*.proto'))
     if protos:
-      print 'Attempting to build proto files:\n%s' % '\n'.join(protos)
+      print('Attempting to build proto files:\n%s' % '\n'.join(protos))
       cmd = [
           self.protoc,
           '--proto_path', self.indir,
@@ -93,18 +93,18 @@ class BuildProtoCommand(Command):
         subprocess.check_call(cmd)
       except OSError as e:
         if e.errno == errno.ENOENT:
-          print 'Could not find the protobuf compiler at %s' % self.protoc
+          print('Could not find the protobuf compiler at %s' % self.protoc)
           print ('On many Linux systems, this is fixed by installing the '
                  '"protobuf-compiler" and "libprotobuf-dev" packages.')
         raise
       except subprocess.CalledProcessError:
-        print 'Could not build proto files.'
+        print('Could not build proto files.')
         print ('This could be due to missing helper files. On many Linux '
                'systems, this is fixed by installing the '
                '"libprotobuf-dev" package.')
         raise
     else:
-      print 'Found no proto files to build.'
+      print('Found no proto files to build.')
 
 
 # Make building protos part of building overall.
@@ -154,7 +154,7 @@ class PyTestCommand(test):
       cov = ' --cov openhtf ' + outputs
 
     sys.argv = [sys.argv[0]]
-    print('invoking pytest.main with %s' % (self.pytest_args + cov))
+    print(('invoking pytest.main with %s' % (self.pytest_args + cov)))
     sys.exit(pytest.main(self.pytest_args + cov))
 
 
