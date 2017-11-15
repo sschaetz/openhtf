@@ -112,15 +112,13 @@ build.sub_commands.insert(0, ('build_proto', None))
 
 
 INSTALL_REQUIRES = [
-    'contextlib2>=0.5.1,<1.0',
-    'enum34>=1.1.2,<2.0',
     'mutablerecords>=0.4.1,<2.0',
-    'oauth2client>=1.5.2,<2.0',
-    'protobuf>=2.6.1,<4.0',
-    'pyaml>=15.3.1,<16.0',
-    'pyOpenSSL>=17.1.0,<18.0',
+    'oauth2client>=4.1.2,<5.0',
+    'protobuf>=3.4.0',
+    'pyaml>=17.10.0,<18.0',
+    'pyOpenSSL>=17.3.0,<18.0',
     'sockjs-tornado>=1.0.3,<2.0',
-    'tornado>=4.3,<5.0',
+    'tornado>=4.5.2,<5.0',
 ]
 
 
